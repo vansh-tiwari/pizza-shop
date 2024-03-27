@@ -8,13 +8,16 @@ const PizzaStages = () => {
     const stages = ['Order Placed', 'Order in Making', 'Order Ready', 'Order Picked'];
 
     return (
+        <>
+        
+        <h3>Pizza Stages Section</h3>
         <div style={styles.stages}>
-            {stages.map((stage, index) => (
-                <div key={stage} style={index === stages.length - 1 ? styles.stageContainer : {...styles.stageContainer, borderRight: '1px solid #ccc'}}>
+            {stages.map((stage) => (
+                <div key={stage} style={styles.stageContainer}>
                     <h3>{stage}</h3>
                     <div style={styles.stage}>
                         {orders
-                            .filter((order) => order.stage === stage)
+                            .filter((order) => order.stage === stage).sort()
                             .map((order) => (
                                 <PizzaCard key={order.orderId} order={order} /> 
                             ))}
@@ -22,6 +25,7 @@ const PizzaStages = () => {
                 </div>
             ))}
         </div>
+        </>
     );
 };
 
@@ -29,17 +33,17 @@ const styles = {
     stages: {
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
+        marginTop: '30px'
     },
     stage: {
         display: 'flex',
         flexDirection: 'column'
     },
     stageContainer: {
-        border: '1px solid #ccc',
-        borderRadius: '5px',
-        padding: '10px',
-        margin: '5px'
+        border: '1px solid #333',
+        flex: '1',
+        textAlign: 'center'
     },
 }
 

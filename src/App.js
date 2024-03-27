@@ -8,7 +8,8 @@ import MainSection from './components/MainSection';
 const App = () => {
     return (
         <Provider store={store}>
-            <div>
+            <div style={styles.body}>
+              <h2>PIZZA SHOP</h2>
                 <PizzaForm />
                 <PizzaStages />
                 <MainSection />
@@ -16,5 +17,11 @@ const App = () => {
         </Provider>
     );
 };
+
+const styles = {
+  body: {
+    margin: '5%'
+  }
+}
 
 export default App;

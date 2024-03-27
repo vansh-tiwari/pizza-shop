@@ -41,15 +41,15 @@ const MainSection = () => {
     const ordersPicked = orders.filter((order) => order.stage === 'Order Picked');
 
     return (
-        <div className="main-section">
-            <h3>Orders in Progress</h3>
-            <table>
+        <div>
+            <h3>Main Section</h3>
+            <table style={styles.tableStyle}>
                 <thead>
                     <tr>
-                        <th>Order Id</th>
-                        <th>Stage</th>
-                        <th>Total time spent (time from order placed)</th>
-                        <th>Action</th>
+                        <th style={styles.cellStyle}>Order Id</th>
+                        <th style={styles.cellStyle}>Stage</th>
+                        <th style={styles.cellStyle}>Total time spent (time from order placed)</th>
+                        <th style={styles.cellStyle}>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,15 +60,10 @@ const MainSection = () => {
     
                         return (
                             <tr key={order.orderId}>
-                                <td>{order.orderId}</td>
-                                <td>{order.stage}</td>
-                                <td>{minutes} min {seconds} sec</td>
-                                <td>
-                                    {order.stage !== 'Order Picked' && (
-                                        <button onClick={() => handleNextStage(order.orderId)}>
-                                            Next Stage
-                                        </button>
-                                    )}
+                                <td style={styles.cellStyle}>{order.orderId}</td>
+                                <td style={styles.cellStyle}>{order.stage}</td>
+                                <td style={styles.cellStyle}>{minutes} min {seconds} sec</td>
+                                <td style={styles.cellStyle}>
                                     {(order.stage !== 'Order Picked' || order.stage !== 'Order Ready') && (
                                         <button onClick={() => handleCancel(order.orderId)}>
                                             Cancel
@@ -78,12 +73,8 @@ const MainSection = () => {
                             </tr>
                         );
                     })}
-                </tbody>
-            </table>
-            <table>
-                <tr>
-                    <td>Total order delivered:</td>
-                    <td>
+                     <td style={styles.cellStyle}>Total order delivered:</td>
+                    <td style={styles.cellStyle} colSpan={3}>
                         {ordersPicked.map((order, index) => (
                             <span key={order.orderId}>
                                 {index > 0 && ', '}
@@ -91,11 +82,25 @@ const MainSection = () => {
                             </span>
                         ))}
                     </td>
-                </tr>
+                </tbody>
             </table>
         </div>
     );
     
 };
+
+const styles = {
+    tableStyle: {
+        borderCollapse: 'collapse',
+        width: '100%',
+        border: '1px solid black'
+    },
+    
+    cellStyle: {
+        border: '1px solid black',
+        padding: '8px',
+        textAlign: 'center'
+    },
+}
 
 export default MainSection;

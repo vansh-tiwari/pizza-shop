@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { placeOrder } from '../store/actions';
+import { commonStyles } from './commonStyles';
 
 const PizzaForm = () => {
     const [type, setType] = useState('Veg');
@@ -36,36 +37,65 @@ const PizzaForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Type:
-                <select value={type} onChange={(e) => setType(e.target.value)}>
+
+        <form onSubmit={handleSubmit} style={styles.formContainerStyles}>
+            <div style={styles.rowStyles}>
+                <label style={styles.labelStyles}>Type:</label>
+                <select value={type} onChange={(e) => setType(e.target.value)} style={styles.selectStyles}>
                     <option value="Veg">Veg</option>
                     <option value="Non-Veg">Non-Veg</option>
                 </select>
-            </label>
-            <label>
-                Size:
-                <select value={size} onChange={(e) => setSize(e.target.value)}>
+            </div>
+            <div style={styles.rowStyles}>
+                <label style={styles.labelStyles}>Size:</label>
+                <select value={size} onChange={(e) => setSize(e.target.value)} style={styles.selectStyles}>
                     <option value="Small">Small</option>
                     <option value="Medium">Medium</option>
                     <option value="Large">Large</option>
                 </select>
-            </label>
-            <label>
-                Base:
-                <select value={base} onChange={(e) => setBase(e.target.value)}>
+            </div>
+            <div style={styles.rowStyles}>
+                <label style={styles.labelStyles}>Base:</label>
+                <select value={base} onChange={(e) => setBase(e.target.value)} style={styles.selectStyles}>
                     <option value="Thin">Thin</option>
                     <option value="Thick">Thick</option>
                 </select>
-            </label>
-            
-            <button type="submit" disabled={orderLimitReached}>
+            </div>
+            <div style={styles.rowStyles}>
+            <label style={styles.labelStyles}></label><button type="submit" disabled={orderLimitReached} style={orderLimitReached ? commonStyles.disabledButton : commonStyles.button}>
                 Place Order
             </button>
+            </div>
             {orderLimitReached && <p>Order limit reached. Please wait for available slots.</p>}
         </form>
     );
+}
+
+const styles = {
+    formContainerStyles: {
+        display: 'flex',
+        flexDirection: 'column',
+        maxWidth: '400px', // Adjust width according to your needs
+    },
+
+    rowStyles: {
+        display: 'flex',
+        marginBottom: '10px',
+    },
+
+    labelStyles: {
+        flex: '1',
+        marginRight: '10px',
+        textAlign: 'right',
+    },
+
+    selectStyles: {
+        flex: '2',
+        padding: '5px',
+        borderRadius: '5px',
+        border: '1px solid #ccc',
+    },
+
 };
 
 export default PizzaForm;
