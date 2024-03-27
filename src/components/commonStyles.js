@@ -3,10 +3,10 @@ export const commonStyles = {
     padding: '10px 20px',
     display: 'inline-block',
     textAlign: 'center',
-    cursor: 'pointer'
+    cursor: 'pointer',
   },
   disabledButton: {
     opacity: 0.5,
     cursor: 'not-allowed',
-  }
-}
+  },
+};

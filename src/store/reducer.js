@@ -1,5 +1,5 @@
 const initialState = {
-  orders: []
+  orders: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -13,7 +13,7 @@ const reducer = (state = initialState, action) => {
             ...action.payload,
             stage: 'Order Placed',
             timeSpent: 0,
-            stageStartTimes: { // Add stageStartTimes to track start times for each stage
+            stageStartTimes: {
               'Order Placed': Date.now(),
             },
           },
@@ -28,7 +28,7 @@ const reducer = (state = initialState, action) => {
             return {
               ...order,
               stage: nextStage,
-              stageStartTimes: { // Update stageStartTimes for the new stage
+              stageStartTimes: {
                 ...order.stageStartTimes,
                 [nextStage]: Date.now(),
               },
@@ -47,7 +47,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         orders: state.orders.map((order) => ({
           ...order,
-          timeSpent: order.timeSpent + 1, // Increment timeSpent by 1 second
+          timeSpent: order.timeSpent + 1,
         })),
       };
     default:
