@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Provider } from 'react-redux';
+import store from './store/store';
+import PizzaForm from './components/PizzaForm';
+import PizzaStages from './components/PizzaStages';
+import MainSection from './components/MainSection';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    return (
+        <Provider store={store}>
+            <div>
+                <PizzaForm />
+                <PizzaStages />
+                <MainSection />
+            </div>
+        </Provider>
+    );
+};
 
 export default App;
